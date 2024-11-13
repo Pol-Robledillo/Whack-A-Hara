@@ -9,12 +9,7 @@ public class Mole : MonoBehaviour
     public ScriptableObject moleData;
     public SpriteRenderer sprite;
     public Coroutine ShowMoleCorroutine;
-    private List<Color> colorList = new List<Color>
-    {
-        new Color(242f/255f, 121f/255f, 49f/255f, 1),
-        new Color(203f/255f, 157f/255f, 52f/255f, 1),
-        new Color(158f/255f, 179f/255f, 45f/255f, 1)
-    };
+    public static Color[] colorList = new Color[3];
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +49,7 @@ public class Mole : MonoBehaviour
     }
     public IEnumerator ShowMole()
     {
-        sprite.color = colorList[Random.Range(0, colorList.Count)];
+        sprite.color = colorList[Random.Range(0, colorList.Length)];
         isHidden = false;
         transform.localPosition = new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z);
         yield return new WaitForSeconds(1f);
