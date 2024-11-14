@@ -20,7 +20,7 @@ public class ButtonController : MonoBehaviour
     }
     public void StartButton()
     {
-        SceneManager.LoadScene(""); //Añadir nombre de la escena
+        SceneManager.LoadScene("Game"); //Añadir nombre de la escena
     }
     public void ExitButton()
     {
