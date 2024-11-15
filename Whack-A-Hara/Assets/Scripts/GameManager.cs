@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public int totalMoles, counter = 0, round = 0;
     public float minWaitTime, maxWaitTime;
     public bool gamePaused = false;
+    public GameObject pausePanel;
     private Color[,] colors = new Color[,]
     {
         {
@@ -76,11 +77,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
+
         }
     }
     void TogglePause()
     {
         gamePaused = !gamePaused;
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        pausePanel.SetActive(GamePaused);
     }
 }
