@@ -1457,7 +1457,7 @@ MonoBehaviour:
   minWaitTime: 0.5
   maxWaitTime: 0.75
   gamePaused: 0
-  pausePanel: {fileID: 0}
+  pausePanel: {fileID: 550437814}
   moles:
   - {fileID: 694588549}
   - {fileID: 1312770696}
@@ -2055,3 +2055,5 @@ SceneRoots:
   - {fileID: 956123473}
   - {fileID: 688655571}
   - {fileID: 859376905}
+  - {fileID: 550437818}
+  - {fileID: 884969759}
