@@ -84,6 +84,6 @@ public class GameManager : MonoBehaviour
     {
         gamePaused = !gamePaused;
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-        pausePanel.SetActive(GamePaused);
+        pausePanel.SetActive(gamePaused);
     }
 }
