@@ -21,9 +21,9 @@ La idea que hemos desarrollado es juntar el clásico mata topos con el test de i
 
 ## Contenido
 - [Proyecto Unity](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara)
-* [Scripts](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Scripts)
-* [Sprites](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Sprites)
-* [Audios](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Audio)
+    - [Scripts](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Scripts)
+    - [Sprites](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Sprites)
+    - [Audios](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Audio)
 ## Equipo
 **Pol Robledillo**:    Unity Developer, Game Designer  
 - Email: pol.robledillo.7e7@itb.cat  
