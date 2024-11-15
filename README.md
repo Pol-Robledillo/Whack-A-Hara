@@ -1,6 +1,6 @@
 # Whack-A-Hara
 
-En este repositorio se encuentra el Proyecto 1 del segundo año de DAMv en el Institut Tecnològic de Barcelona del equipo Todo Al Rojo.
+En este repositorio se encuentra el Proyecto 1 del segundo año de DAMv en el Instituto Tecnológico de Barcelona del equipo Todo Al Rojo.
 
 ## Descripción del proyecto
 
@@ -21,4 +21,16 @@ La idea que hemos desarrollado es juntar el clásico mata topos con el test de i
 
 ## Contenido
 
-## Contacto
+## Equipo
+**Pol Robledillo**: Unity Developer, Game Designer
+- pol.robledillo.7e7@itb.cat
+- https://github.com/Pol-Robledillo
+**Jan España**: Game Designer, Diseñador 2D
+- jan.espana.7e7@itb.cat
+- https://github.com/JanEspana
+**Marta Alarcón**: Diseñadora 2D, Unity UI
+- marta.alarcon.7e7@itb.cat
+- https://github.com/MartaAlarcon
+**Raul Palomo**: Scrum Master
+- raul.palomo.7e7@itb.cat
+- https://github.com/RaulPalomo
