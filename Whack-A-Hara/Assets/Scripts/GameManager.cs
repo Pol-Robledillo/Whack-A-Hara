@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public int totalMoles, counter = 0, round = 0;
     public float minWaitTime, maxWaitTime;
-    public bool GamePaused = false;
+    public bool gamePaused = false;
     public GameObject pausePanel;
     private Color[,] colors = new Color[,]
     {
@@ -57,8 +57,15 @@ public class GameManager : MonoBehaviour
         }
         round++;
         counter = 0;
-        yield return new WaitForSeconds(2f);
-        yield return SpawnMoles();
+        if (round < colors.GetLength(0))
+        {
+            yield return new WaitForSeconds(2f);
+            yield return SpawnMoles();
+        }
+        else
+        {
+            StopCoroutine(SpawnMoles());
+        }
     }
     // Update is called once per frame
     void Update()
@@ -75,7 +82,7 @@ public class GameManager : MonoBehaviour
     }
     void TogglePause()
     {
-        GamePaused = !GamePaused;
+        gamePaused = !gamePaused;
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         pausePanel.SetActive(GamePaused);
     }
