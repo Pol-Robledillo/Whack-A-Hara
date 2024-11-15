@@ -24,13 +24,13 @@ La idea que hemos desarrollado es juntar el clásico mata topos con el test de i
 ## Equipo
 **Pol Robledillo**: Unity Developer, Game Designer  
 - pol.robledillo.7e7@itb.cat
-- https://github.com/Pol-Robledillo
+- https://github.com/Pol-Robledillo  
 **Jan España**: Game Designer, Diseñador 2D  
 - jan.espana.7e7@itb.cat
-- https://github.com/JanEspana
+- https://github.com/JanEspana  
 **Marta Alarcón**: Diseñadora 2D, Unity UI  
 - marta.alarcon.7e7@itb.cat
-- https://github.com/MartaAlarcon
+- https://github.com/MartaAlarcon  
 **Raul Palomo**: Scrum Master  
 - raul.palomo.7e7@itb.cat
-- https://github.com/RaulPalomo
+- https://github.com/RaulPalomo  
