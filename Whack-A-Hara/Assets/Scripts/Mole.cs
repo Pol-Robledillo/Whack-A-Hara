@@ -6,7 +6,6 @@ public class Mole : MonoBehaviour
 {
     private GameObject scoreManager;
     public bool isHidden = true;
-    public ScriptableObject moleData;
     public SpriteRenderer sprite;
     public Coroutine ShowMoleCorroutine;
     public static Color[] colorList = new Color[3];
@@ -57,7 +56,7 @@ public class Mole : MonoBehaviour
     }
     void HideMole()
     {
-        transform.localPosition = new Vector3(transform.localPosition.x, -1.5f, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
         isHidden = true;
     }
 }
