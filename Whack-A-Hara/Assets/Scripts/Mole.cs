@@ -30,7 +30,9 @@ public class Mole : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 StopCoroutine(ShowMole());
-                HideMole();
+
+                //cambiar posicion directamente
+
                 if (sprite.color == colorList[0])
                 {
                     scoreManager.GetComponent<ScoreManager>().score += -10;
@@ -50,13 +52,23 @@ public class Mole : MonoBehaviour
     {
         sprite.color = colorList[Random.Range(0, colorList.Length)];
         isHidden = false;
-        transform.localPosition = new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z);
+
+        float TotalTime = 0.5f;
+        int interactions = 10;
+        for (int i=0; i<interactions; i++)
+        {
+            yield return new WaitForSeconds(TotalTime/interactions);
+            transform.localPosition = (new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z) - transform.localPosition)/TotalTime * i* TotalTime / interactions + transform.localPosition;
+        }
+        //transform.localPosition = new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z);
         yield return new WaitForSeconds(1f);
-        HideMole();
-    }
-    void HideMole()
-    {
-        transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
+
+        for (int i = 0; i < interactions; i++)
+        {
+            yield return new WaitForSeconds(TotalTime / interactions);
+            transform.localPosition = (new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z) - transform.localPosition) / TotalTime * i *TotalTime / interactions + transform.localPosition;
+        }
+        //transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
         isHidden = true;
     }
 }
