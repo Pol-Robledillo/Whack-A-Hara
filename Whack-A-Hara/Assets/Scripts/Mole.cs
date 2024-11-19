@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mole : MonoBehaviour
 {
+    private GameObject gameManager;
     private GameObject scoreManager;
     public bool isHidden = true;
     public SpriteRenderer sprite;
@@ -13,6 +14,7 @@ public class Mole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         scoreManager = GameObject.Find("ScoreManager");
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -31,19 +33,20 @@ public class Mole : MonoBehaviour
             {
                 StopCoroutine(ShowMole());
 
-                //cambiar posicion directamente
+                transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
+                isHidden = true;
 
                 if (sprite.color == colorList[0])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += -10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
                 }
                 else if (sprite.color == colorList[1])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += 10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 10;
                 }
                 else if (sprite.color == colorList[2])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += 20;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 20;
                 }
             }
         }
