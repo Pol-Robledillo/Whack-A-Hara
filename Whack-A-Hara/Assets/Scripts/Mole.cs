@@ -38,15 +38,15 @@ public class Mole : MonoBehaviour
 
                 if (sprite.color == colorList[0])
                 {
-                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 30;
                 }
                 else if (sprite.color == colorList[1])
                 {
-                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
                 }
                 else if (sprite.color == colorList[2])
                 {
-                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 20;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -20;
                 }
             }
         }
@@ -57,7 +57,7 @@ public class Mole : MonoBehaviour
         isHidden = false;
 
         float TotalTime = 0.5f;
-        int interactions = 10;
+        int interactions = 20;
         for (int i=0; i<interactions; i++)
         {
             yield return new WaitForSeconds(TotalTime/interactions);
