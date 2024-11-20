@@ -29,12 +29,12 @@ La idea que hemos desarrollado es juntar el clásico mata topos con el test de I
 
 Al finalizar las rondas del juego, aparece una pantalla con una recomendación según tu índice de daltonismo. Pero, ¿cómo se ha hecho?
 - Al inicio de cada ronda, se te indicará qué color es el que tienes que golpear. En cada ronda, el topo correcto sumará puntos. Otro topo es de color parecido, el cual resta una pequeña parte de puntuación. Por último, un topo será muy distinto a ojos de una persona sin daltonismo, pero si lo golpeas te restará una gran cantidad de puntos.
-- La ronda 1 es una prueba, con colores rojo, azul y verde puros para comprobar cuál es tu nivel de juego. De esta forma, podemos evaluar tu resultado independientemente de qué tan bueno seas en el matatopos.
+- La ronda 1 es una prueba, con colores rojos, azules y verdes puros para comprobar cuál es tu nivel de juego. De esta forma, podemos evaluar tu resultado independientemente de qué tan bueno seas en el mata topos.
 - A partir de la ronda 2 es cuando empieza la prueba. Cada una de las distintas rondas valorará un distinto tipo de daltonismo.
 - En la pantalla final se te darán los resultados, comparando cada una de las rondas con cuánta puntuación sacaste en la ronda 1. Tras eso, se hará un diagnóstico:
     - Si la diferencia de puntuación es muy baja, lo más probable es que no tengas daltonismo.
-    - Si la diferencia es considerable pero no muy alta, probablemente tengas cierto grado. Podrías ir a ver a un óptico para que te diga si es así o no.
-    - Si en cambio la diferencia es muy alta, es muy probable que tengas un alto grado de daltonismo. Es recomendable ir a ver a un profesional para confirmarlo.
+    - Si la diferencia es considerable, pero no muy alta, probablemente tengas cierto grado. Podrías ir a ver a un óptico para que te diga si es así o no.
+    - Si, en cambio, la diferencia es muy alta, es muy probable que tengas un alto grado de daltonismo. Es recomendable ir a ver a un profesional para confirmarlo.
 
 ## Equipo
 **Pol Robledillo**:    Unity Developer, Game Designer  
