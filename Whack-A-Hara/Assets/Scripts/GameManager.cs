@@ -4,14 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioClip startGame;
+    public AudioClip nextRound;
+    private AudioSource audioSource;
     public int totalMoles, counter = 0, round = 0, correctMoles = 0;
     public float minWaitTime, maxWaitTime;
     public bool gamePaused = false;
     public GameObject pausePanel;
     public TextMeshProUGUI roundUI;
+    public TextMeshProUGUI scoreUI;
     public Image moleTargetUI;
     private Color[,] colors = new Color[,]
     {
@@ -37,35 +42,97 @@ public class GameManager : MonoBehaviour
         }
     };
     public GameObject[] moles;
-    // Start is called before the first frame update
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reiniciar el estado del juego cuando se recarga la escena
+        ResetGame();
+    }
+
     void Start()
     {
-        roundUI = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
-        moleTargetUI = GameObject.Find("Target").GetComponent<Image>();
+        audioSource = GetComponent<AudioSource>();
+
+        // Obtener las referencias de la UI (asegurarte de que los objetos de la UI estén asignados)
+        if (roundUI == null) roundUI = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
+        if (moleTargetUI == null) moleTargetUI = GameObject.Find("Target").GetComponent<Image>();
+        if (scoreUI == null) scoreUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>(); // Asignar la puntuación
+
+        if (startGame != null)
+        {
+            audioSource.PlayOneShot(startGame);
+        }
+
+        // Inicializar el juego
+        ResetGame();
+
+        // Iniciar el ciclo de aparición de topos
         StartCoroutine(SpawnMoles());
     }
+
+    // Método para reiniciar el juego
+    void ResetGame()
+    {
+        round = 0;
+        counter = 0;
+        correctMoles = 0;
+
+        // Actualizar UI (puntuación, ronda, color objetivo)
+        roundUI.text = "" + (round + 1);  // Establecer la primera ronda
+        moleTargetUI.color = colors[round, 0];  // Configurar el color del target
+        scoreUI.text = "0000";  // Reiniciar el puntaje
+
+        // Restablecer el estado de los topos (asegurarse de que están ocultos)
+        foreach (var mole in moles)
+        {
+            mole.GetComponent<Mole>().HideMole();
+        }
+    }
+
     IEnumerator SpawnMoles()
     {
+        // Configurar los colores para la ronda
         if (Mole.colorList == null || Mole.colorList[0] != colors[round, 0])
         {
             Mole.colorList = new Color[] { colors[round, 0], colors[round, 1], colors[round, 2] };
             moleTargetUI.color = colors[round, 0];
             roundUI.text = "" + (round + 1);
         }
-        while(counter<totalMoles)
+
+        // Mostrar los topos hasta que llegue al total
+        while (counter < totalMoles)
         {
             yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+
             GameObject mole;
             do
             {
-                mole = moles[Random.Range(0, moles.Length - 1)];
-            } while (!mole.GetComponent<Mole>().isHidden);
+                mole = moles[Random.Range(0, moles.Length)];
+            } while (!mole.GetComponent<Mole>().isHidden);  // Solo seleccionar topos ocultos
+
+            // Iniciar la animación del topo
             mole.GetComponent<Mole>().ShowMoleCorroutine = StartCoroutine(mole.GetComponent<Mole>().ShowMole());
             counter++;
-            yield return SpawnMoles();
         }
+
+        // Esperar un poco antes de empezar la siguiente ronda
         yield return new WaitForSeconds(2f);
+
         round++;
+        if (nextRound != null)
+        {
+            audioSource.PlayOneShot(nextRound);
+        }
+
         counter = 0;
         if (round < 4)
         {
@@ -76,7 +143,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Results");
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
         DetectPause();
@@ -95,4 +162,23 @@ public class GameManager : MonoBehaviour
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         pausePanel.SetActive(gamePaused);
     }
+    public void ContinueButton()
+    {
+        TogglePause();
+        Time.timeScale= 1f;
+
+    }
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+
+    }
+    public void ResetButton()
+    {
+        SceneManager.LoadScene("Game");
+        Time.timeScale= 1f;
+    }
+
+
 }
