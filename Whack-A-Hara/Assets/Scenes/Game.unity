@@ -1348,7 +1348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scores: 00000000000000000000000000000000
-  results: 00000000000000000000000000000000
 --- !u!4 &956123473
 Transform:
   m_ObjectHideFlags: 0
@@ -1398,13 +1397,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73dc72e5efe0fa448f8b1b55a018348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalMoles: 30
+  totalMoles: 1
   counter: 0
   round: 0
   minWaitTime: 0.5
   maxWaitTime: 0.75
   gamePaused: 0
   pausePanel: {fileID: 103737131}
+  roundUI: {fileID: 0}
+  moleTargetUI: {fileID: 0}
   moles:
   - {fileID: 694588549}
   - {fileID: 1312770696}
@@ -2170,7 +2171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160.54, y: 35}
+  m_AnchoredPosition: {x: 160.53998, y: 35}
   m_SizeDelta: {x: 105.19, y: 34.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536060573
@@ -2468,7 +2469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.54, y: -36}
+  m_AnchoredPosition: {x: 160.53998, y: -36}
   m_SizeDelta: {x: 105.19, y: 34.02002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922493937

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
@@ -7,8 +8,8 @@ using UnityEngine.TextCore.Text;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
+    private TextMeshProUGUI scoreUI;
     public int[] scores = new int[] { 0, 0, 0, 0 };
-    public int[] results = new int[] { 0, 0, 0, 0 };
     private void Awake()
     {
         if (instance == null)
@@ -24,12 +25,17 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (scoreUI == null)
+        {
+            scoreUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void UpdateScoreUI(int round)
     {
-        
+        Debug.Log(scoreUI);
+        if (scoreUI != null)
+        {
+            scoreUI.text = "" + scores[round];
+        }
     }
 }
