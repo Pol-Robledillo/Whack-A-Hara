@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mole : MonoBehaviour
 {
+    private AudioSource hitMole;
     private GameObject gameManager;
     private GameObject scoreManager;
     public bool isHidden = true;
@@ -17,6 +18,8 @@ public class Mole : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         scoreManager = GameObject.Find("ScoreManager");
         sprite = GetComponent<SpriteRenderer>();
+        hitMole = GetComponent<AudioSource>();
+
     }
     // Update is called once per frame
     void Update()
@@ -31,6 +34,8 @@ public class Mole : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(new Vector3(mousePos.x,mousePos.y,-10f), Vector3.forward);
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
+                //audio
+                hitMole.Play();
                 StopCoroutine(ShowMole());
 
                 transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
@@ -107,5 +112,10 @@ public class Mole : MonoBehaviour
                 sprite.color = colorList[2];
             }
         }
+    }
+    public void HideMole()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
+        isHidden = true;
     }
 }
