@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int totalMoles, counter = 0, round = 0;
+    public int totalMoles, counter = 0, round = 0, correctMoles = 0;
     public float minWaitTime, maxWaitTime;
     public bool gamePaused = false;
     public GameObject pausePanel;
+    public TextMeshProUGUI roundUI;
+    public Image moleTargetUI;
     private Color[,] colors = new Color[,]
     {
         {
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        roundUI = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
+        moleTargetUI = GameObject.Find("Target").GetComponent<Image>();
         StartCoroutine(SpawnMoles());
     }
     IEnumerator SpawnMoles()
@@ -42,6 +49,8 @@ public class GameManager : MonoBehaviour
         if (Mole.colorList == null || Mole.colorList[0] != colors[round, 0])
         {
             Mole.colorList = new Color[] { colors[round, 0], colors[round, 1], colors[round, 2] };
+            moleTargetUI.color = colors[round, 0];
+            roundUI.text = "" + (round + 1);
         }
         while(counter<totalMoles)
         {
@@ -55,16 +64,16 @@ public class GameManager : MonoBehaviour
             counter++;
             yield return SpawnMoles();
         }
+        yield return new WaitForSeconds(2f);
         round++;
         counter = 0;
-        if (round < colors.GetLength(0))
+        if (round < 4)
         {
-            yield return new WaitForSeconds(2f);
             yield return SpawnMoles();
         }
         else
         {
-            StopCoroutine(SpawnMoles());
+            SceneManager.LoadScene("Results");
         }
     }
     // Update is called once per frame
