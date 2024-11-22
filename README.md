@@ -12,7 +12,7 @@ En este proyecto tenemos como objetivo desarrollar un prototipo de juego que ayu
 
 ## Nuestro juego
 
-La idea que hemos desarrollado es juntar el clásico mata topos con el test de ishihara. Los topos irán apareciendo en pantalla y el jugador deberá golpear a aquellos que sean del color correspondiente. A medida que el juego avance, las combinaciones de colores cambiaran para poder poner a prueba los diferentes tipos de daltonismo. Para que el juego sea capaz de medir la severidad, tendremos diferentes niveles de colores que serán más o menos difíciles de diferenciar para un daltónico.
+La idea que hemos desarrollado es juntar el clásico mata topos con el test de Ishihara. Los topos irán apareciendo en pantalla y el jugador deberá golpear a aquellos que sean del color correspondiente. A medida que el juego avance, las combinaciones de colores cambiaran para poder poner a prueba los diferentes tipos de daltonismo. Para que el juego sea capaz de medir la severidad, tendremos diferentes niveles de colores que serán más o menos difíciles de diferenciar para un daltónico.
 
 ### Esquemas
 - [Wireframe para el videojuego](https://www.figma.com/design/eVLZ8N815d3DshVDXGYZlJ/WireFrame_WhackAHara?node-id=0-1&t=4dZ0wU0cA8BsdqMu-1)
@@ -24,6 +24,18 @@ La idea que hemos desarrollado es juntar el clásico mata topos con el test de i
     - [Scripts](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Scripts)
     - [Sprites](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Sprites)
     - [Audios](https://github.com/Pol-Robledillo/Whack-A-Hara/tree/main/Whack-A-Hara/Assets/Audio)
+
+## Sistema de puntuación
+
+Al finalizar las rondas del juego, aparece una pantalla con una recomendación según tu índice de daltonismo. Pero, ¿cómo se ha hecho?
+- Al inicio de cada ronda, se te indicará qué color es el que tienes que golpear. En cada ronda, el topo correcto sumará puntos. Otro topo es de color parecido, el cual resta una pequeña parte de puntuación. Por último, un topo será muy distinto a ojos de una persona sin daltonismo, pero si lo golpeas te restará una gran cantidad de puntos.
+- La ronda 1 es una prueba, con colores rojos, azules y verdes puros para comprobar cuál es tu nivel de juego. De esta forma, podemos evaluar tu resultado independientemente de qué tan bueno seas en el mata topos.
+- A partir de la ronda 2 es cuando empieza la prueba. Cada una de las distintas rondas valorará un distinto tipo de daltonismo.
+- En la pantalla final se te darán los resultados, comparando cada una de las rondas con cuánta puntuación sacaste en la ronda 1. Tras eso, se hará un diagnóstico:
+    - Si la diferencia de puntuación es muy baja, lo más probable es que no tengas daltonismo.
+    - Si la diferencia es considerable, pero no muy alta, probablemente tengas cierto grado. Podrías ir a ver a un óptico para que te diga si es así o no.
+    - Si, en cambio, la diferencia es muy alta, es muy probable que tengas un alto grado de daltonismo. Es recomendable ir a ver a un profesional para confirmarlo.
+
 ## Equipo
 **Pol Robledillo**:    Unity Developer, Game Designer  
 - Email: pol.robledillo.7e7@itb.cat  

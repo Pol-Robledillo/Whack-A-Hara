@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mole : MonoBehaviour
 {
+    private GameObject gameManager;
     private GameObject scoreManager;
     public bool isHidden = true;
     public SpriteRenderer sprite;
@@ -13,6 +14,7 @@ public class Mole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         scoreManager = GameObject.Find("ScoreManager");
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -31,44 +33,79 @@ public class Mole : MonoBehaviour
             {
                 StopCoroutine(ShowMole());
 
-                //cambiar posicion directamente
+                transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
+                isHidden = true;
 
                 if (sprite.color == colorList[0])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += -10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 30;
                 }
                 else if (sprite.color == colorList[1])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += 10;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
                 }
                 else if (sprite.color == colorList[2])
                 {
-                    scoreManager.GetComponent<ScoreManager>().score += 20;
+                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -20;
                 }
+                scoreManager.GetComponent<ScoreManager>().UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
             }
         }
     }
     public IEnumerator ShowMole()
     {
-        sprite.color = colorList[Random.Range(0, colorList.Length)];
+        ChooseMoleColor();
         isHidden = false;
 
-        float TotalTime = 0.5f;
-        int interactions = 10;
+        float TotalTime = 0.3f;
+        int interactions = 15;
         for (int i=0; i<interactions; i++)
         {
             yield return new WaitForSeconds(TotalTime/interactions);
             transform.localPosition = (new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z) - transform.localPosition)/TotalTime * i* TotalTime / interactions + transform.localPosition;
         }
-        //transform.localPosition = new Vector3(transform.localPosition.x, 0.7f, transform.localPosition.z);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         for (int i = 0; i < interactions; i++)
         {
             yield return new WaitForSeconds(TotalTime / interactions);
             transform.localPosition = (new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z) - transform.localPosition) / TotalTime * i *TotalTime / interactions + transform.localPosition;
         }
-        //transform.localPosition = new Vector3(transform.localPosition.x, -3.5f, transform.localPosition.z);
         isHidden = true;
+    }
+    private void ChooseMoleColor()
+    {
+        if (gameManager.GetComponent<GameManager>().correctMoles < 15)
+        {
+            int random = Random.Range(0, 10);
+            if (random < 4)
+            {
+                sprite.color = colorList[0];
+            }
+            else if (random >= 4 && random < 7)
+            {
+                sprite.color = colorList[1];
+            }
+            else
+            {
+                sprite.color = colorList[2];
+            }
+        }
+        else
+        {
+            int random = Random.Range(0, 5);
+            if (random < 1)
+            {
+                sprite.color = colorList[0];
+            }
+            else if (random >= 1 && random < 3)
+            {
+                sprite.color = colorList[1];
+            }
+            else
+            {
+                sprite.color = colorList[2];
+            }
+        }
     }
 }
