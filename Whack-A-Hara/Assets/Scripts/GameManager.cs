@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         audioSource = GetComponent<AudioSource>();
 
         // Obtener las referencias de la UI (asegurarte de que los objetos de la UI estén asignados)
@@ -140,6 +141,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Cursor.visible = true;
             SceneManager.LoadScene("Results");
         }
     }
@@ -152,24 +154,30 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.visible = true;
             TogglePause();
-
         }
     }
     void TogglePause()
     {
+        
         gamePaused = !gamePaused;
+        if ( !gamePaused)
+        {
+            Cursor.visible = false;
+        }
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         pausePanel.SetActive(gamePaused);
     }
     public void ContinueButton()
     {
+        Cursor.visible = false;
         TogglePause();
         Time.timeScale= 1f;
-
     }
     public void MenuButton()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
 
