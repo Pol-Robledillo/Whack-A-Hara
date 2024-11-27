@@ -7,6 +7,7 @@ using UnityEngine.TextCore.Text;
 
 public class ScoreManager : MonoBehaviour
 {
+    public GameManager gameManager;
     public static ScoreManager instance;
     private TextMeshProUGUI scoreUI;
     private TextMeshProUGUI deut;
@@ -39,18 +40,23 @@ public class ScoreManager : MonoBehaviour
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (gameManager == null)
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            StartCoroutine(InitializeUI());
+            ResetScores();
+
+        }
         try
         {
 
             deut = GameObject.Find("DeuteranomaliaR").GetComponent<TextMeshProUGUI>();
             prot = GameObject.Find("ProtanomaliaR").GetComponent<TextMeshProUGUI>();
             azulAmarillo = GameObject.Find("AzulR").GetComponent<TextMeshProUGUI>();
-            /*int deutProb = scores[1] - scores[0];
-            int protProb = scores[2] - scores[0];
-            int azulAmarilloProb = scores[3] - scores[0];
-            AssignResults(deut, deutProb);
-            AssignResults(prot, protProb);
-            AssignResults(azulAmarillo, azulAmarilloProb);*/
+
             AssignResults(deut, scores[1]);
             AssignResults(prot, scores[2]);
             AssignResults(azulAmarillo, scores[3]);
@@ -80,5 +86,25 @@ public class ScoreManager : MonoBehaviour
         {
             text.text = "No tienes";
         }
+    }
+    private void ResetScores()
+    {
+        for (int i = 0; i < scores.Length; i++)
+        {
+            scores[i] = 0;
+        }
+        UpdateScoreUI(0);
+    }
+    private IEnumerator InitializeUI()
+    {
+        yield return null;  // Espera al siguiente frame
+
+        // Ahora busca los objetos de la UI
+        if (scoreUI == null)
+        {
+            scoreUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        }
+        // Ahora actualiza la UI
+        UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
     }
 }
