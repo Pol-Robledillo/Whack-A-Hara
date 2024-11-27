@@ -8,6 +8,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public AudioClip startGame;
     public AudioClip nextRound;
     private AudioSource audioSource;
@@ -57,10 +58,11 @@ public class GameManager : MonoBehaviour
         // Reiniciar el estado del juego cuando se recarga la escena
         ResetGame();
     }
-
+    
     void Start()
     {
         Cursor.visible = false;
+
         audioSource = GetComponent<AudioSource>();
 
         // Obtener las referencias de la UI (asegurarte de que los objetos de la UI estén asignados)
