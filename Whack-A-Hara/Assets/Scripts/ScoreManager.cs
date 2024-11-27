@@ -14,6 +14,10 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI prot;
     private TextMeshProUGUI azulAmarillo;
     public int[] scores = new int[] { 0, 0, 0, 0 };
+    private string deuta;
+    private string prota;
+    private string azulAm;
+    
     private void Awake()
     {
 
@@ -40,12 +44,13 @@ public class ScoreManager : MonoBehaviour
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (gameManager == null)
-        {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        }
+        
         if (SceneManager.GetActiveScene().name == "Game")
         {
+            if (gameManager == null)
+            {
+                gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            }
             StartCoroutine(InitializeUI());
             ResetScores();
 
@@ -57,9 +62,9 @@ public class ScoreManager : MonoBehaviour
             prot = GameObject.Find("ProtanomaliaR").GetComponent<TextMeshProUGUI>();
             azulAmarillo = GameObject.Find("AzulR").GetComponent<TextMeshProUGUI>();
 
-            AssignResults(deut, scores[1]);
-            AssignResults(prot, scores[2]);
-            AssignResults(azulAmarillo, scores[3]);
+            AssignResults(deut, scores[1], "deuta");
+            AssignResults(prot, scores[2], "prota");
+            AssignResults(azulAmarillo, scores[3], "azulAm");
 
         }
         catch { Debug.Log("No se han encontrado"); }
@@ -72,7 +77,7 @@ public class ScoreManager : MonoBehaviour
             scoreUI.text = "" + scores[round];
         }
     }
-    public void AssignResults(TextMeshProUGUI text, int num)
+    public void AssignResults(TextMeshProUGUI text, int num, string result)
     {
         if (num < (scores[0] / 3))
         {
@@ -86,7 +91,9 @@ public class ScoreManager : MonoBehaviour
         {
             text.text = "No tienes";
         }
+        PlayerPrefs.SetString(result, text.text);
     }
+    
     private void ResetScores()
     {
         for (int i = 0; i < scores.Length; i++)
@@ -107,4 +114,7 @@ public class ScoreManager : MonoBehaviour
         // Ahora actualiza la UI
         UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
     }
+    
+
+
 }
