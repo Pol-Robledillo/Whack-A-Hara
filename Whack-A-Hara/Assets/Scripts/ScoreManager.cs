@@ -78,24 +78,17 @@ public class ScoreManager : MonoBehaviour
     }
     public void AssignResults(TextMeshProUGUI text, int num, string result)
     {
-        if (scores[0] == 0)
+        if (num < (scores[0] / 3))
         {
-            text.text = "No calculable";
+            text.text = "Grave";
+        }
+        else if (num < (scores[0] / 3) * 2)
+        {
+            text.text = "Leve";
         }
         else
         {
-            if (num < (scores[0] / 3))
-            {
-                text.text = "Grave";
-            }
-            else if (num < (scores[0] / 3) * 2)
-            {
-                text.text = "Leve";
-            }
-            else
-            {
-                text.text = "No tienes";
-            }
+            text.text = "No tienes";
         }
         PlayerPrefs.SetString(result, text.text);
     }
@@ -110,14 +103,12 @@ public class ScoreManager : MonoBehaviour
     }
     private IEnumerator InitializeUI()
     {
-        yield return null;  // Espera al siguiente frame
+        yield return null;
 
-        // Ahora busca los objetos de la UI
         if (scoreUI == null)
         {
             scoreUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         }
-        // Ahora actualiza la UI
         UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
     }
     
