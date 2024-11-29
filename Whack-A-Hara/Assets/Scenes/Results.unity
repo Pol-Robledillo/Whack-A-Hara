@@ -674,7 +674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Azul-Amarillo
+  m_text: "Tritanomal\xEDa"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 837f1e40096f8514a89765109f4a5c91, type: 2}
   m_sharedMaterial: {fileID: 5490002388217726205, guid: 837f1e40096f8514a89765109f4a5c91, type: 2}

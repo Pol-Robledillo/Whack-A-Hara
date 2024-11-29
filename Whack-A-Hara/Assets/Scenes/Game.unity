@@ -886,6 +886,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 543791564690397090, guid: 7cf1d63889a01024989d1174634396b3, type: 3}
+      propertyPath: InitialModule.gravitySource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648030902392914383, guid: 7cf1d63889a01024989d1174634396b3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2955437043177302916, guid: 7cf1d63889a01024989d1174634396b3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1612,7 +1620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 837f1e40096f8514a89765109f4a5c91, type: 2}
   m_sharedMaterial: {fileID: 5490002388217726205, guid: 837f1e40096f8514a89765109f4a5c91, type: 2}

@@ -89,12 +89,10 @@ public class GameManager : MonoBehaviour
         counter = 0;
         correctMoles = 0;
 
-        // Actualizar UI (puntuación, ronda, color objetivo)
-        roundUI.text = "" + (round + 1);  // Establecer la primera ronda
-        moleTargetUI.color = colors[round, 0];  // Configurar el color del target
-        scoreUI.text = "0000";  // Reiniciar el puntaje
+        roundUI.text = "" + (round + 1);
+        moleTargetUI.color = colors[round, 0];
+        scoreUI.text = "0";
 
-        // Restablecer el estado de los topos (asegurarse de que están ocultos)
         foreach (var mole in moles)
         {
             mole.GetComponent<Mole>().HideMole();
@@ -103,15 +101,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnMoles()
     {
-        // Configurar los colores para la ronda
         if (Mole.colorList == null || Mole.colorList[0] != colors[round, 0])
         {
+            scoreUI.text = "0";
             Mole.colorList = new Color[] { colors[round, 0], colors[round, 1], colors[round, 2] };
             moleTargetUI.color = colors[round, 0];
             roundUI.text = "" + (round + 1);
         }
 
-        // Mostrar los topos hasta que llegue al total
         while (counter < totalMoles)
         {
             yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
@@ -120,14 +117,12 @@ public class GameManager : MonoBehaviour
             do
             {
                 mole = moles[Random.Range(0, moles.Length)];
-            } while (!mole.GetComponent<Mole>().isHidden);  // Solo seleccionar topos ocultos
+            } while (!mole.GetComponent<Mole>().isHidden);
 
-            // Iniciar la animación del topo
             mole.GetComponent<Mole>().ShowMoleCorroutine = StartCoroutine(mole.GetComponent<Mole>().ShowMole());
             counter++;
         }
 
-        // Esperar un poco antes de empezar la siguiente ronda
         yield return new WaitForSeconds(2f);
 
         round++;

@@ -11,6 +11,7 @@ public class Mole : MonoBehaviour
     public SpriteRenderer sprite;
     public Coroutine ShowMoleCorroutine;
     public static Color[] colorList = new Color[3];
+    [SerializeField] private ParticleSystem hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class Mole : MonoBehaviour
         scoreManager = GameObject.Find("ScoreManager");
         sprite = GetComponent<SpriteRenderer>();
         hitMole = GetComponent<AudioSource>();
-
+        hitEffect = GetComponentInChildren<ParticleSystem>();
     }
     // Update is called once per frame
     void Update()
@@ -43,15 +44,30 @@ public class Mole : MonoBehaviour
 
                 if (sprite.color == colorList[0])
                 {
+                    hitEffect.Play();
                     scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += 30;
                 }
                 else if (sprite.color == colorList[1])
                 {
-                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
+                    if (scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] - 10 < 0)
+                    {
+                        scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] = 0;
+                    }
+                    else
+                    {
+                        scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -10;
+                    }
                 }
                 else if (sprite.color == colorList[2])
                 {
-                    scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -20;
+                    if (scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] - 20 < 0)
+                    {
+                        scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] = 0;
+                    }
+                    else
+                    {
+                        scoreManager.GetComponent<ScoreManager>().scores[gameManager.GetComponent<GameManager>().round] += -20;
+                    }
                 }
                 scoreManager.GetComponent<ScoreManager>().UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
             }

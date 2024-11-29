@@ -57,7 +57,6 @@ public class ScoreManager : MonoBehaviour
         }
         try
         {
-
             deut = GameObject.Find("DeuteranomaliaR").GetComponent<TextMeshProUGUI>();
             prot = GameObject.Find("ProtanomaliaR").GetComponent<TextMeshProUGUI>();
             azulAmarillo = GameObject.Find("AzulR").GetComponent<TextMeshProUGUI>();
@@ -79,17 +78,24 @@ public class ScoreManager : MonoBehaviour
     }
     public void AssignResults(TextMeshProUGUI text, int num, string result)
     {
-        if (num < (scores[0] / 3))
+        if (scores[0] == 0)
         {
-            text.text = "Grave";
-        }
-        else if (num < (scores[0] / 3) * 2)
-        {
-            text.text = "Leve";
+            text.text = "No calculable";
         }
         else
         {
-            text.text = "No tienes";
+            if (num < (scores[0] / 3))
+            {
+                text.text = "Grave";
+            }
+            else if (num < (scores[0] / 3) * 2)
+            {
+                text.text = "Leve";
+            }
+            else
+            {
+                text.text = "No tienes";
+            }
         }
         PlayerPrefs.SetString(result, text.text);
     }
