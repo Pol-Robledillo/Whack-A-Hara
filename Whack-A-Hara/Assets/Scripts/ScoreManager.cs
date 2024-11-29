@@ -57,7 +57,6 @@ public class ScoreManager : MonoBehaviour
         }
         try
         {
-
             deut = GameObject.Find("DeuteranomaliaR").GetComponent<TextMeshProUGUI>();
             prot = GameObject.Find("ProtanomaliaR").GetComponent<TextMeshProUGUI>();
             azulAmarillo = GameObject.Find("AzulR").GetComponent<TextMeshProUGUI>();
@@ -104,14 +103,12 @@ public class ScoreManager : MonoBehaviour
     }
     private IEnumerator InitializeUI()
     {
-        yield return null;  // Espera al siguiente frame
+        yield return null;
 
-        // Ahora busca los objetos de la UI
         if (scoreUI == null)
         {
             scoreUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         }
-        // Ahora actualiza la UI
         UpdateScoreUI(gameManager.GetComponent<GameManager>().round);
     }
     
